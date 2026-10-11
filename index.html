@@ -7,7 +7,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
             theme: {
@@ -27,6 +27,7 @@
                             700: '#003584',
                             800: '#03265c',
                             900: '#051838',
+                            accent: '#38bdf8',
                             gold: '#f59e0b',
                             emerald: '#10b981',
                         }
@@ -37,139 +38,414 @@
     </script>
     <style>
         .custom-glass {
-            background: rgba(15, 23, 42, 0.75);
+            background: rgba(10, 16, 31, 0.82);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.08);
         }
         .grid-pattern {
-            background-size: 32px 32px;
+            background-size: 36px 36px;
             background-image: 
-                linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+                linear-gradient(to right, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+        }
+        .glow-mesh {
+            background: radial-gradient(circle at 50% 0%, rgba(37, 99, 235, 0.18) 0%, rgba(15, 23, 42, 0) 70%);
         }
         .badge-verified {
-            background: rgba(16, 185, 129, 0.15);
+            background: rgba(16, 185, 129, 0.12);
             color: #34d399;
             border: 1px solid rgba(16, 185, 129, 0.3);
         }
         .badge-misinfo {
-            background: rgba(239, 68, 68, 0.15);
+            background: rgba(239, 68, 68, 0.12);
             color: #f87171;
             border: 1px solid rgba(239, 68, 68, 0.3);
         }
         .badge-opinion {
-            background: rgba(245, 158, 11, 0.15);
+            background: rgba(245, 158, 11, 0.12);
             color: #fbbf24;
             border: 1px solid rgba(245, 158, 11, 0.3);
         }
+        .carousel-slide {
+            transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1), transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        /* Custom delicate scrollbar */
+        ::-webkit-scrollbar { width: 5px; height: 5px; }
+        ::-webkit-scrollbar-track { background: #080d1a; }
+        ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #334155; }
     </style>
 </head>
-<body class="bg-[#080d1a] text-slate-100 antialiased font-sans selection:bg-brand-500 selection:text-white">
+<body class="bg-[#070b16] text-slate-100 antialiased font-sans selection:bg-brand-500 selection:text-white">
 
-    <!-- Institutional Top Bar -->
-    <div class="border-b border-slate-800/80 bg-[#050813] text-[11px] font-mono text-slate-400 py-1.5 px-4">
+    <!-- Institutional Horizon Top Bar -->
+    <div class="border-b border-slate-800/80 bg-[#040711] text-[11px] font-mono text-slate-400 py-2 px-4 sticky top-0 z-50">
         <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-2">
             <div class="flex items-center gap-3">
-                <span class="inline-flex items-center gap-1.5 text-blue-400 font-semibold">
-                    <span class="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse"></span>
-                    EU DATATHON 2021 FINALIST ARCHITECTURE
+                <span class="inline-flex items-center gap-1.5 text-blue-400 font-semibold tracking-wide">
+                    <span class="w-2 h-2 rounded-full bg-blue-400 animate-pulse"></span>
+                    EU DATATHON FINALIST ARCHITECTURE
                 </span>
-                <span class="text-slate-600">|</span>
-                <span>Incubated via Orange Grove (Netherlands Embassy in Greece)</span>
+                <span class="text-slate-700">|</span>
+                <span class="text-slate-300">Incubated via Orange Grove (Netherlands Embassy in Greece)</span>
             </div>
-            <div class="flex items-center gap-4">
-                <span>Ground Truth API: <strong class="text-slate-300">Eurostat &bull; TED &bull; CORDIS</strong></span>
-                <span class="text-slate-600">|</span>
-                <span class="text-emerald-400">Institutional Beta Active</span>
+            <div class="flex items-center gap-4 text-[11px]">
+                <span class="flex items-center gap-1.5">
+                    <svg class="w-3 h-3 text-emerald-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                    Live Datasets: <strong class="text-slate-200">Eurostat &bull; TED &bull; CORDIS</strong>
+                </span>
+                <span class="text-slate-700">|</span>
+                <span class="text-amber-400 font-semibold">B2G &amp; Campus Protocol Active</span>
             </div>
         </div>
     </div>
 
-    <!-- Navigation -->
-    <header class="sticky top-0 z-50 custom-glass border-b border-slate-800">
+    <!-- Navigation Header -->
+    <header class="custom-glass border-b border-slate-800/80 sticky top-[33px] z-40">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <div class="flex items-center gap-4">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-indigo-700 flex items-center justify-center font-display font-bold text-xl text-white shadow-lg shadow-blue-500/20 border border-blue-400/30">
+            <div class="flex items-center gap-3.5">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 via-indigo-600 to-blue-700 flex items-center justify-center font-display font-bold text-2xl text-white shadow-lg shadow-blue-600/30 border border-blue-400/40">
                     Δ
                 </div>
                 <div>
                     <span class="font-display font-bold text-xl tracking-tight text-white block leading-tight">Democracy Game</span>
-                    <span class="text-[10px] font-mono text-blue-400 uppercase tracking-widest">AI-Mediated Civic Arena</span>
+                    <span class="text-[10px] font-mono text-blue-400 uppercase tracking-widest">Deliberative Civic Intelligence</span>
                 </div>
             </div>
 
-            <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
-                <a href="#arena" class="hover:text-blue-400 transition-colors">Interactive Arena</a>
-                <a href="#methodology" class="hover:text-blue-400 transition-colors">Behavioral Engine (B=MAT)</a>
-                <a href="#datasets" class="hover:text-blue-400 transition-colors">EU Datasets</a>
-                <a href="#institutional" class="hover:text-blue-400 transition-colors">Institutions & Universities</a>
-                <a href="#manifesto" class="hover:text-blue-400 transition-colors">Founding Team</a>
+            <nav class="hidden lg:flex items-center gap-8 text-sm font-medium text-slate-300">
+                <a href="#arena" class="hover:text-blue-400 transition-colors flex items-center gap-1.5">
+                    <span class="w-1.5 h-1.5 rounded-full bg-blue-500"></span> Live Arena
+                </a>
+                <a href="#lifecycle-carousel" class="hover:text-blue-400 transition-colors">Lifecycle Tour</a>
+                <a href="#clustering" class="hover:text-blue-400 transition-colors">Consensus Map (Pol.is)</a>
+                <a href="#gamification" class="hover:text-blue-400 transition-colors">Civic Tiers</a>
+                <a href="#methodology" class="hover:text-blue-400 transition-colors">B=MAT Engine</a>
+                <a href="#leadership" class="hover:text-blue-400 transition-colors">Leadership</a>
             </nav>
 
             <div class="flex items-center gap-3">
-                <a href="#arena" class="px-5 py-2.5 rounded-lg bg-blue-600 hover:bg-blue-500 text-white text-sm font-semibold transition-all shadow-lg shadow-blue-600/25 border border-blue-400/30 flex items-center gap-2">
-                    <span>Launch Arena Demo</span>
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                <a href="#arena" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white text-xs font-mono font-bold tracking-wider transition-all shadow-lg shadow-blue-600/25 border border-blue-400/30 flex items-center gap-2">
+                    <span>ENTER ARENA</span>
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path></svg>
                 </a>
             </div>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="relative pt-20 pb-28 overflow-hidden grid-pattern">
-        <div class="absolute inset-0 bg-gradient-to-b from-blue-600/10 via-transparent to-[#080d1a] pointer-events-none"></div>
-        
+    <!-- Hero Section with Visual Nodes -->
+    <section class="relative pt-20 pb-28 overflow-hidden grid-pattern glow-mesh">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="max-w-3xl mx-auto text-center">
+            <div class="grid lg:grid-cols-12 gap-12 items-center">
                 
-                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-900/40 border border-blue-500/30 text-blue-300 text-xs font-mono mb-8">
-                    <span class="w-2 h-2 rounded-full bg-blue-400 animate-ping"></span>
-                    REVERSING POLITICAL APATHY IN DIGITAL NATIVES (15-29)
+                <div class="lg:col-span-7 text-left space-y-6">
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-950/70 border border-blue-500/30 text-blue-300 text-xs font-mono">
+                        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                        BRIDGING DIGITAL NATIVES (15–29) &amp; DEMOCRATIC INSTITUTIONS
+                    </div>
+
+                    <h1 class="font-display font-extrabold text-4xl sm:text-6xl lg:text-7xl tracking-tight text-white leading-[1.06]">
+                        Rhetoric With Data. <br/>
+                        <span class="bg-gradient-to-r from-blue-400 via-sky-300 to-amber-300 bg-clip-text text-transparent">
+                            Debate Into Policy.
+                        </span>
+                    </h1>
+
+                    <p class="text-base sm:text-lg text-slate-300 font-normal leading-relaxed max-w-xl">
+                        Social platforms incentivized polarization and echo chambers. <strong>Democracy Game</strong> turns civic debate into a gamified, fact-checked arena: claims are triangulated against official EU open datasets, consensus clusters are mapped, and vetted arguments are synthesized into legislative drafts for real MEPs.
+                    </p>
+
+                    <div class="flex flex-wrap items-center gap-4 pt-2">
+                        <a href="#arena" class="px-7 py-3.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold text-sm transition-all shadow-xl shadow-blue-600/30 border border-blue-400/40 flex items-center gap-2.5">
+                            <span>Launch Live Townhall Arena</span>
+                            <span class="font-mono text-[11px] bg-blue-900/80 px-2 py-0.5 rounded text-blue-200 border border-blue-700">v2.6 MVP</span>
+                        </a>
+                        <a href="#lifecycle-carousel" class="px-6 py-3.5 rounded-xl bg-slate-900/90 hover:bg-slate-800 text-slate-200 font-semibold text-sm transition-all border border-slate-700 flex items-center gap-2">
+                            <span>Explore 4-Step Product Tour</span>
+                            <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </a>
+                    </div>
+
+                    <!-- Benchmark Badges -->
+                    <div class="grid grid-cols-3 gap-4 pt-6 border-t border-slate-800/80">
+                        <div>
+                            <div class="text-[11px] font-mono text-slate-400 uppercase">Debate Synthesis</div>
+                            <div class="font-display font-bold text-xl text-white mt-1">Kialo &times; Pol.is</div>
+                            <div class="text-[11px] text-slate-500">Argument trees + clustering</div>
+                        </div>
+                        <div>
+                            <div class="text-[11px] font-mono text-slate-400 uppercase">Fact Verification</div>
+                            <div class="font-display font-bold text-xl text-blue-400 mt-1">100% Ground Truth</div>
+                            <div class="text-[11px] text-slate-500">Eurostat &bull; TED &bull; CORDIS</div>
+                        </div>
+                        <div>
+                            <div class="text-[11px] font-mono text-slate-400 uppercase">Policy Delivery</div>
+                            <div class="font-display font-bold text-xl text-emerald-400 mt-1">Direct-to-MEP</div>
+                            <div class="text-[11px] text-slate-500">Actionable Consensus Drafts</div>
+                        </div>
+                    </div>
                 </div>
 
-                <h1 class="font-display font-extrabold text-4xl sm:text-6xl lg:text-7xl tracking-tight text-white leading-[1.08] mb-8">
-                    Where Public Debate <br/>
-                    <span class="bg-gradient-to-r from-blue-400 via-indigo-300 to-amber-300 bg-clip-text text-transparent">
-                        Becomes Measurable Policy.
-                    </span>
-                </h1>
+                <!-- Visual Interactive Hero Mockup Card -->
+                <div class="lg:col-span-5 relative">
+                    <div class="absolute -inset-1 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 rounded-3xl blur-2xl opacity-25"></div>
+                    
+                    <div class="relative rounded-2xl bg-slate-900/90 border border-slate-800 shadow-2xl p-6 space-y-5">
+                        
+                        <div class="flex items-center justify-between border-b border-slate-800 pb-4">
+                            <div class="flex items-center gap-2.5">
+                                <div class="w-3 h-3 rounded-full bg-red-500/80"></div>
+                                <div class="w-3 h-3 rounded-full bg-yellow-500/80"></div>
+                                <div class="w-3 h-3 rounded-full bg-green-500/80"></div>
+                                <span class="text-xs font-mono text-slate-400 ml-2">Townhall Telemetry #EU-DEBATE</span>
+                            </div>
+                            <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-800">● LIVE</span>
+                        </div>
 
-                <p class="text-lg sm:text-xl text-slate-300 font-normal leading-relaxed mb-10 max-w-2xl mx-auto">
-                    Social networks turned civic discourse into algorithmic echo chambers. <strong>Democracy Game</strong> restructures public debate into a gamified, fact-checked arena powered by real-time EU open datasets and cognitive debiasing.
-                </p>
+                        <!-- Motion Banner -->
+                        <div class="p-3.5 rounded-xl bg-[#070b16] border border-slate-800">
+                            <div class="text-[10px] font-mono text-blue-400 uppercase font-semibold">Active Parliamentary Motion</div>
+                            <div class="text-xs font-bold text-slate-200 mt-1">
+                                Renewable Energy Quota &amp; Mediterranean Industrial Transition
+                            </div>
+                            <div class="flex items-center justify-between text-[11px] text-slate-500 font-mono mt-2">
+                                <span>Participants: 1,420</span>
+                                <span class="text-blue-400">Consensus Convergence: 86%</span>
+                            </div>
+                        </div>
 
-                <div class="flex flex-wrap items-center justify-center gap-4">
-                    <a href="#arena" class="px-8 py-4 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold text-base transition-all shadow-xl shadow-blue-600/30 border border-blue-400/40 flex items-center gap-2">
-                        <span>Enter Live Virtual Townhall</span>
-                        <span class="font-mono text-xs bg-blue-900/60 px-2 py-0.5 rounded text-blue-200 border border-blue-700">v2.6 MVP</span>
-                    </a>
-                    <a href="#methodology" class="px-8 py-4 rounded-xl bg-slate-800/80 hover:bg-slate-700/80 text-slate-200 font-semibold text-base transition-all border border-slate-700/80">
-                        Read Behavioral Model
-                    </a>
+                        <!-- Verified Argument Node -->
+                        <div class="p-4 rounded-xl bg-slate-950/70 border border-emerald-500/30 space-y-2">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center gap-2">
+                                    <div class="w-6 h-6 rounded-full bg-emerald-900 text-emerald-300 text-[10px] font-bold flex items-center justify-center">DL</div>
+                                    <span class="text-xs font-bold text-slate-200">Dimitrios Lampiris</span>
+                                    <span class="text-[10px] font-mono text-emerald-400">&bull; Verified Deliberator</span>
+                                </div>
+                                <span class="badge-verified text-[10px] font-mono px-2 py-0.5 rounded font-bold">+15 pts</span>
+                            </div>
+                            <p class="text-xs text-slate-300 leading-relaxed">
+                                "According to Eurostat GHG data (env_ac_ainah_r2), net industrial carbon output decreased by 2.4% last term, proving targeted capital grants outperform blunt mandates."
+                            </p>
+                            <div class="text-[10px] font-mono text-emerald-400/90 bg-emerald-950/40 p-2 rounded border border-emerald-900/40 flex items-center justify-between">
+                                <span>Anchor: Eurostat Verified Dataset</span>
+                                <span>Confidence: 99.2%</span>
+                            </div>
+                        </div>
+
+                        <!-- Fallacy Intercept Node -->
+                        <div class="p-4 rounded-xl bg-slate-950/70 border border-red-500/30 space-y-2">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center gap-2">
+                                    <div class="w-6 h-6 rounded-full bg-red-900 text-red-300 text-[10px] font-bold flex items-center justify-center">?</div>
+                                    <span class="text-xs font-bold text-slate-400">Anonymous Post</span>
+                                </div>
+                                <span class="badge-misinfo text-[10px] font-mono px-2 py-0.5 rounded font-bold">-10 pts</span>
+                            </div>
+                            <p class="text-xs text-slate-400 line-through leading-relaxed">
+                                "The EU increased fuel taxes by 60% secretly to shut down transport."
+                            </p>
+                            <div class="text-[10px] font-mono text-red-400/90 bg-red-950/40 p-2 rounded border border-red-900/40 flex items-center justify-between">
+                                <span>AI Fact Check: Refuted via Tax Revenue Portal</span>
+                                <span>Penalty Enforced</span>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
 
-                <!-- Verified Metric Badges -->
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-16 text-left">
-                    <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-800">
-                        <div class="text-xs font-mono text-slate-400 uppercase">Civic Participation</div>
-                        <div class="font-display font-bold text-2xl text-white mt-1">Informal &rarr; Formal</div>
-                        <div class="text-xs text-slate-500 mt-1">Tony Judt Civic Cohesion Model</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4-STEP CIVIC LIFECYCLE CAROUSEL (PRODUCT TOUR) -->
+    <section id="lifecycle-carousel" class="py-24 bg-[#050813] border-t border-b border-slate-800/80 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+                <div>
+                    <div class="text-xs font-mono text-blue-400 tracking-wider uppercase mb-2">Interactive Product Tour</div>
+                    <h2 class="font-display font-bold text-3xl sm:text-5xl text-white">How Democracy Game Works</h2>
+                    <p class="text-slate-400 text-sm sm:text-base mt-2 max-w-2xl">
+                        Borrowing the best mechanics from Kialo, Pol.is, and Decidim, structured into a 4-step pipeline that transforms raw discussion into vetted public policy.
+                    </p>
+                </div>
+                
+                <!-- Carousel Navigation Controls -->
+                <div class="flex items-center gap-3">
+                    <button onclick="prevSlide()" class="w-10 h-10 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 flex items-center justify-center transition-all">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                    </button>
+                    <div class="text-xs font-mono text-slate-400 px-3">
+                        <span id="current-slide-num" class="text-blue-400 font-bold">1</span> / 4
                     </div>
-                    <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-800">
-                        <div class="text-xs font-mono text-slate-400 uppercase">Ground Truth Engine</div>
-                        <div class="font-display font-bold text-2xl text-blue-400 mt-1">100% EU Open Data</div>
-                        <div class="text-xs text-slate-500 mt-1">Eurostat / TED / CORDIS</div>
+                    <button onclick="nextSlide()" class="w-10 h-10 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 flex items-center justify-center transition-all">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Carousel Step Buttons -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8">
+                <button onclick="goToSlide(0)" id="step-btn-0" class="p-4 rounded-xl bg-blue-600/20 border border-blue-500/50 text-left transition-all">
+                    <span class="text-[10px] font-mono text-blue-400 uppercase font-bold block">Phase 01</span>
+                    <span class="font-display font-bold text-sm text-white mt-1 block">Motion Intake &amp; Stance</span>
+                </button>
+                <button onclick="goToSlide(1)" id="step-btn-1" class="p-4 rounded-xl bg-slate-900/60 border border-slate-800 text-left transition-all opacity-70 hover:opacity-100">
+                    <span class="text-[10px] font-mono text-slate-400 uppercase font-bold block">Phase 02</span>
+                    <span class="font-display font-bold text-sm text-white mt-1 block">Ground Truth Engine</span>
+                </button>
+                <button onclick="goToSlide(2)" id="step-btn-2" class="p-4 rounded-xl bg-slate-900/60 border border-slate-800 text-left transition-all opacity-70 hover:opacity-100">
+                    <span class="text-[10px] font-mono text-slate-400 uppercase font-bold block">Phase 03</span>
+                    <span class="font-display font-bold text-sm text-white mt-1 block">Consensus Clustering</span>
+                </button>
+                <button onclick="goToSlide(3)" id="step-btn-3" class="p-4 rounded-xl bg-slate-900/60 border border-slate-800 text-left transition-all opacity-70 hover:opacity-100">
+                    <span class="text-[10px] font-mono text-slate-400 uppercase font-bold block">Phase 04</span>
+                    <span class="font-display font-bold text-sm text-white mt-1 block">Institutional Hand-off</span>
+                </button>
+            </div>
+
+            <!-- Carousel Slides Deck -->
+            <div class="relative min-h-[460px] rounded-3xl bg-slate-900/80 border border-slate-800 p-8 sm:p-12 overflow-hidden shadow-2xl">
+                
+                <!-- Slide 1 -->
+                <div id="slide-0" class="carousel-slide grid md:grid-cols-12 gap-8 items-center">
+                    <div class="md:col-span-6 space-y-4">
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-950 border border-blue-800 text-blue-300 text-xs font-mono">
+                            STEP 1 &bull; STRUCTURED DEBATE ARCHITECTURE
+                        </div>
+                        <h3 class="font-display font-bold text-2xl sm:text-4xl text-white">
+                            Micro-Debate Rooms Inspired by Kialo &amp; Oxford Rhetoric
+                        </h3>
+                        <p class="text-sm sm:text-base text-slate-300 leading-relaxed">
+                            Instead of endless unstructured flame wars, motions are decomposed into rigorous Pro &amp; Con premise branches. Digital natives pick explicit stances and build on peer arguments.
+                        </p>
+                        <ul class="space-y-2 text-xs font-mono text-slate-400">
+                            <li class="flex items-center gap-2"><span class="text-blue-400">&check;</span> Binary Stance Framing (Proponent vs. Opponent)</li>
+                            <li class="flex items-center gap-2"><span class="text-blue-400">&check;</span> Time-limited 48h legislative sprints</li>
+                            <li class="flex items-center gap-2"><span class="text-blue-400">&check;</span> Lincoln-Douglas formal debate timing</li>
+                        </ul>
                     </div>
-                    <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-800">
-                        <div class="text-xs font-mono text-slate-400 uppercase">Cognitive Architecture</div>
-                        <div class="font-display font-bold text-2xl text-amber-300 mt-1">B = M &times; A &times; T</div>
-                        <div class="text-xs text-slate-500 mt-1">Fogg &amp; Kahneman Ritual Loops</div>
+                    <div class="md:col-span-6 p-6 rounded-2xl bg-[#080d1a] border border-slate-800 space-y-4">
+                        <div class="text-xs font-mono text-slate-400 uppercase border-b border-slate-800 pb-2">Visual Argument Branching</div>
+                        <div class="space-y-3 text-xs">
+                            <div class="p-3 rounded-lg bg-blue-950/40 border border-blue-800/60 text-blue-200">
+                                <span class="font-bold">PRO:</span> "Accelerates green capital flow to youth-led cleantech."
+                            </div>
+                            <div class="ml-6 p-3 rounded-lg bg-slate-900 border border-slate-800 text-slate-300">
+                                <span class="font-bold text-amber-400">COUNTER:</span> "Requires matching grid battery storage to prevent peak spikes."
+                            </div>
+                            <div class="ml-12 p-3 rounded-lg bg-emerald-950/40 border border-emerald-800/60 text-emerald-200">
+                                <span class="font-bold">&check; SYNTHESIS:</span> "Tie subsidies to battery deployment milestones."
+                            </div>
+                        </div>
                     </div>
-                    <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-800">
-                        <div class="text-xs font-mono text-slate-400 uppercase">Institutional Pipeline</div>
-                        <div class="font-display font-bold text-2xl text-emerald-400 mt-1">B2G &amp; Universities</div>
-                        <div class="text-xs text-slate-500 mt-1">Decidim &amp; Pol.is Complement</div>
+                </div>
+
+                <!-- Slide 2 -->
+                <div id="slide-1" class="carousel-slide hidden grid md:grid-cols-12 gap-8 items-center">
+                    <div class="md:col-span-6 space-y-4">
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-950 border border-emerald-800 text-emerald-300 text-xs font-mono">
+                            STEP 2 &bull; FACTUAL GROUND TRUTH ENGINE
+                        </div>
+                        <h3 class="font-display font-bold text-2xl sm:text-4xl text-white">
+                            Real-time Claim Verification with EU Open Data &amp; AI
+                        </h3>
+                        <p class="text-sm sm:text-base text-slate-300 leading-relaxed">
+                            Borrowing from Meedan Check &amp; Snopes, our AI acts as an impartial adjudicator. Every statistical claim is cross-checked instantly against Eurostat and public procurement records.
+                        </p>
+                        <ul class="space-y-2 text-xs font-mono text-slate-400">
+                            <li class="flex items-center gap-2"><span class="text-emerald-400">&check;</span> Automated Fallacy Detection (Ad Hominem, Strawman)</li>
+                            <li class="flex items-center gap-2"><span class="text-emerald-400">&check;</span> Eurostat API Deep Link verification</li>
+                            <li class="flex items-center gap-2"><span class="text-emerald-400">&check;</span> Civic Score points awarded or deducted in real-time</li>
+                        </ul>
+                    </div>
+                    <div class="md:col-span-6 p-6 rounded-2xl bg-[#080d1a] border border-slate-800 space-y-4">
+                        <div class="text-xs font-mono text-emerald-400 uppercase border-b border-slate-800 pb-2">Ground Truth Telemetry</div>
+                        <div class="space-y-2.5 font-mono text-xs">
+                            <div class="flex justify-between items-center p-2 rounded bg-slate-900 border border-slate-800">
+                                <span class="text-slate-300">Statistical Claim Match:</span>
+                                <span class="text-emerald-400 font-bold">Eurostat lfsa_eisn2</span>
+                            </div>
+                            <div class="flex justify-between items-center p-2 rounded bg-slate-900 border border-slate-800">
+                                <span class="text-slate-300">Confidence Threshold:</span>
+                                <span class="text-emerald-400 font-bold">98.4% (Direct Citation)</span>
+                            </div>
+                            <div class="flex justify-between items-center p-2 rounded bg-slate-900 border border-slate-800">
+                                <span class="text-slate-300">Reputation Modifier:</span>
+                                <span class="text-emerald-400 font-bold">+15 Civic Points</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 3 -->
+                <div id="slide-2" class="carousel-slide hidden grid md:grid-cols-12 gap-8 items-center">
+                    <div class="md:col-span-6 space-y-4">
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-950 border border-indigo-800 text-indigo-300 text-xs font-mono">
+                            STEP 3 &bull; CONSENSUS MAPPING (POL.IS ENGINE)
+                        </div>
+                        <h3 class="font-display font-bold text-2xl sm:text-4xl text-white">
+                            Bridging Divides with Principal Component Clustering
+                        </h3>
+                        <p class="text-sm sm:text-base text-slate-300 leading-relaxed">
+                            Following the methodology of vTaiwan and Pol.is, our engine visualizes where opposing voting blocs actually overlap, discovering hidden super-consensus points that traditional polls miss.
+                        </p>
+                        <ul class="space-y-2 text-xs font-mono text-slate-400">
+                            <li class="flex items-center gap-2"><span class="text-indigo-400">&check;</span> 2D Visual Opinion Topology</li>
+                            <li class="flex items-center gap-2"><span class="text-indigo-400">&check;</span> Isolation of Bridge Statements</li>
+                            <li class="flex items-center gap-2"><span class="text-indigo-400">&check;</span> 80%+ cross-tribal agreement identification</li>
+                        </ul>
+                    </div>
+                    <div class="md:col-span-6 p-6 rounded-2xl bg-[#080d1a] border border-slate-800 space-y-4">
+                        <div class="text-xs font-mono text-indigo-400 uppercase border-b border-slate-800 pb-2">Consensus Clustering Vector</div>
+                        <div class="h-44 rounded-xl bg-slate-950 flex flex-col items-center justify-center p-4 border border-slate-800 relative">
+                            <div class="w-full h-full flex items-center justify-around">
+                                <div class="text-center">
+                                    <div class="w-12 h-12 rounded-full bg-blue-900/60 border border-blue-500 flex items-center justify-center text-xs font-bold text-blue-300">Cluster A</div>
+                                    <span class="text-[10px] text-slate-400 mt-1 block">Urban Youth</span>
+                                </div>
+                                <div class="text-center p-2 rounded-lg bg-emerald-950/80 border border-emerald-500">
+                                    <span class="text-[10px] font-bold text-emerald-300 block">BRIDGE CONSENSUS</span>
+                                    <span class="text-xs font-mono text-white">88% Agreement</span>
+                                </div>
+                                <div class="text-center">
+                                    <div class="w-12 h-12 rounded-full bg-purple-900/60 border border-purple-500 flex items-center justify-center text-xs font-bold text-purple-300">Cluster B</div>
+                                    <span class="text-[10px] text-slate-400 mt-1 block">Industrial Cohort</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 4 -->
+                <div id="slide-3" class="carousel-slide hidden grid md:grid-cols-12 gap-8 items-center">
+                    <div class="md:col-span-6 space-y-4">
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-950 border border-amber-800 text-amber-300 text-xs font-mono">
+                            STEP 4 &bull; DIRECT-TO-MEP POLICY SYNTHESIS
+                        </div>
+                        <h3 class="font-display font-bold text-2xl sm:text-4xl text-white">
+                            Converting Debate Points Into Official Legislative Drafts
+                        </h3>
+                        <p class="text-sm sm:text-base text-slate-300 leading-relaxed">
+                            Borrowing from CitizenLab &amp; Decidim, the deliberation outputs are auto-formatted into formal Policy Briefs and sent to partnered European Parliament offices and municipal councils.
+                        </p>
+                        <ul class="space-y-2 text-xs font-mono text-slate-400">
+                            <li class="flex items-center gap-2"><span class="text-amber-400">&check;</span> Automated Legal Article Structuring (e.g. Article 3.2 Draft)</li>
+                            <li class="flex items-center gap-2"><span class="text-amber-400">&check;</span> Direct Export for Municipal Assemblies</li>
+                            <li class="flex items-center gap-2"><span class="text-amber-400">&check;</span> Closed-loop feedback: Politicians respond in-app</li>
+                        </ul>
+                    </div>
+                    <div class="md:col-span-6 p-6 rounded-2xl bg-[#080d1a] border border-slate-800 space-y-3 font-mono text-xs">
+                        <div class="text-xs font-mono text-amber-400 uppercase border-b border-slate-800 pb-2">Synthesized Legislative Output</div>
+                        <div class="p-3.5 rounded-lg bg-slate-950 border border-slate-800 space-y-1.5">
+                            <div class="text-slate-300 font-bold">Document: #EU-BRIEF-2026-MED</div>
+                            <p class="text-[11px] text-slate-400 font-sans">
+                                "Mandates phased subsidy redirect matching local vocational reskilling rates, verified through regional CORDIS innovation projects."
+                            </p>
+                            <div class="text-[10px] text-emerald-400 pt-1">Status: Dispatched to EU Parliamentary Working Group</div>
+                        </div>
                     </div>
                 </div>
 
@@ -178,19 +454,19 @@
     </section>
 
     <!-- LIVE INTERACTIVE ARENA (MVP SIMULATION) -->
-    <section id="arena" class="py-20 bg-[#060a14] border-t border-b border-slate-800/80 relative">
+    <section id="arena" class="py-20 bg-[#060a14] border-b border-slate-800/80 relative">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             
             <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
                 <div>
-                    <div class="text-xs font-mono text-blue-400 tracking-wider uppercase mb-2">Simulation Environment</div>
-                    <h2 class="font-display font-bold text-3xl sm:text-4xl text-white">Live Virtual Townhall Arena</h2>
+                    <div class="text-xs font-mono text-blue-400 tracking-wider uppercase mb-2">Simulation Sandbox</div>
+                    <h2 class="font-display font-bold text-3xl sm:text-5xl text-white">The Live Townhall Arena</h2>
                     <p class="text-slate-400 text-sm sm:text-base mt-2 max-w-2xl">
-                        Experience the live debate engine. Test an argument against verified Eurostat datasets, trigger automated fallacy detection, and view immediate Civic Score adjustments.
+                        Test the real-time argument engine. Input claims, trigger automated dataset cross-examination, and observe immediate reputation updates.
                     </p>
                 </div>
-                <div class="flex items-center gap-3 bg-slate-900/80 border border-slate-800 p-2 rounded-xl text-xs font-mono">
-                    <span class="text-slate-400">Active Debate Room:</span>
+                <div class="flex items-center gap-3 bg-slate-900/80 border border-slate-800 p-2.5 rounded-xl text-xs font-mono">
+                    <span class="text-slate-400">Current Deliberation:</span>
                     <span class="text-blue-300 font-semibold">#EU-GREEN-DEAL-2030</span>
                     <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
                 </div>
@@ -233,7 +509,7 @@
                                     </div>
                                     <div>
                                         <div class="text-sm font-semibold text-slate-200 flex items-center gap-2">
-                                            <span>Andreas Kalafatis</span>
+                                            <span>Alexandros K.</span>
                                             <span class="text-[10px] font-mono px-1.5 py-0.2 rounded bg-slate-800 text-slate-400">Opponent Stance</span>
                                         </div>
                                         <div class="text-[11px] text-slate-500 font-mono">Hellenic Debating Society &bull; Civic Rep: 1,840 pts</div>
@@ -297,28 +573,28 @@
                     </div>
 
                     <!-- Input / Argument Dispatch Form -->
-                    <div class="p-4 rounded-2xl bg-slate-900 border border-slate-800 space-y-3">
+                    <div class="p-5 rounded-2xl bg-slate-900 border border-slate-800 space-y-4">
                         <div class="flex items-center justify-between text-xs font-mono text-slate-400">
                             <span class="flex items-center gap-2">
                                 <span class="w-2 h-2 rounded-full bg-blue-500"></span>
-                                Enter Debate Stance:
+                                Select Argument Stance:
                             </span>
                             <div class="flex gap-2">
-                                <button type="button" id="btn-stance-pro" class="px-2.5 py-1 rounded bg-blue-900/60 text-blue-300 border border-blue-700 text-[11px] font-bold">PRO</button>
-                                <button type="button" id="btn-stance-con" class="px-2.5 py-1 rounded bg-slate-800 text-slate-400 border border-slate-700 text-[11px]">CON</button>
+                                <button type="button" id="btn-stance-pro" class="px-3 py-1 rounded-lg bg-blue-900/70 text-blue-300 border border-blue-600 text-[11px] font-bold">PRO (In Favor)</button>
+                                <button type="button" id="btn-stance-con" class="px-3 py-1 rounded-lg bg-slate-800 text-slate-400 border border-slate-700 text-[11px]">CON (Against)</button>
                             </div>
                         </div>
                         <div class="relative">
-                            <textarea id="user-statement" rows="3" placeholder="Type your policy argument. Cite empirical figures or specific claims to test the AI validator..." class="w-full bg-[#080d1a] border border-slate-700 rounded-xl p-3 text-sm text-slate-200 placeholder-slate-500 focus:outline-none focus:border-blue-500 transition-colors"></textarea>
+                            <textarea id="user-statement" rows="3" placeholder="State your policy argument. Cite empirical figures or specific claims to test the AI validator in real-time..." class="w-full bg-[#080d1a] border border-slate-700 rounded-xl p-3.5 text-sm text-slate-200 placeholder-slate-500 focus:outline-none focus:border-blue-500 transition-colors"></textarea>
                         </div>
                         <div class="flex flex-wrap items-center justify-between gap-3 pt-1">
                             <div class="flex items-center gap-2 text-xs font-mono text-slate-400">
-                                <span>Preset Test Claims:</span>
+                                <span>Preset Test Cases:</span>
                                 <button onclick="insertPreset(1)" class="text-blue-400 hover:underline">[True: Youth Housing]</button>
-                                <button onclick="insertPreset(2)" class="text-red-400 hover:underline">[False: Inflation Fallacy]</button>
+                                <button onclick="insertPreset(2)" class="text-red-400 hover:underline">[False: Inflation Conspiracy]</button>
                             </div>
                             <button id="btn-dispatch-argument" onclick="processArgument()" class="px-6 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs font-mono tracking-wider transition-all flex items-center gap-2 shadow-lg shadow-blue-600/30">
-                                <span>DISPATCH TO MODERATOR</span>
+                                <span>EVALUATE &amp; DISPATCH</span>
                                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
                             </button>
                         </div>
@@ -353,7 +629,7 @@
                             </div>
                         </div>
 
-                        <button class="w-full py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-mono tracking-wider transition-colors border border-slate-700 flex items-center justify-center gap-2">
+                        <button onclick="alert('Policy Brief generated and ready for export to European Parliament working group.')" class="w-full py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-mono tracking-wider transition-colors border border-slate-700 flex items-center justify-center gap-2">
                             <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
                             Export Policy Brief (PDF)
                         </button>
@@ -398,31 +674,164 @@
                         </div>
                     </div>
 
-                    <!-- Leaderboard & Gamification Snapshot -->
-                    <div class="p-6 rounded-2xl bg-slate-900/80 border border-slate-800 space-y-3">
-                        <div class="flex items-center justify-between">
-                            <h4 class="font-display font-bold text-sm text-white">Civic League Rankings</h4>
-                            <span class="text-[10px] font-mono text-amber-400">Season 3</span>
-                        </div>
-                        <div class="space-y-2 text-xs font-mono">
-                            <div class="flex items-center justify-between p-2 rounded bg-slate-950 text-slate-300">
-                                <span>1. Toastmasters EU Athens</span>
-                                <span class="text-emerald-400 font-bold">+4,280 pts</span>
-                            </div>
-                            <div class="flex items-center justify-between p-2 rounded bg-slate-950 text-slate-300">
-                                <span>2. Sciences Po Agora Club</span>
-                                <span class="text-emerald-400 font-bold">+3,910 pts</span>
-                            </div>
-                            <div class="flex items-center justify-between p-2 rounded bg-slate-950 text-slate-300">
-                                <span>3. Univ. of Crete Debaters</span>
-                                <span class="text-emerald-400 font-bold">+3,540 pts</span>
-                            </div>
-                        </div>
-                    </div>
-
                 </div>
 
             </div>
+        </div>
+    </section>
+
+    <!-- POL.IS CONSENSUS CLUSTERING MAP -->
+    <section id="clustering" class="py-24 bg-[#070b16] border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-12 gap-12 items-center">
+                
+                <div class="lg:col-span-5 space-y-5">
+                    <div class="text-xs font-mono text-indigo-400 uppercase tracking-wider font-semibold">Borrowed from Pol.is &amp; vTaiwan</div>
+                    <h2 class="font-display font-bold text-3xl sm:text-4xl text-white">
+                        Visualizing Hidden Consensus Across Demographic Divides
+                    </h2>
+                    <p class="text-sm sm:text-base text-slate-300 leading-relaxed">
+                        Conventional social algorithms optimize for outrage by pushing extremes apart. Democracy Game applies real-time Principal Component Analysis (PCA) to debate votes, showing citizens where they share common values.
+                    </p>
+                    <div class="space-y-3 pt-2 text-xs font-mono">
+                        <div class="flex items-center gap-3 p-3 rounded-xl bg-slate-900 border border-slate-800">
+                            <span class="w-3 h-3 rounded-full bg-blue-500"></span>
+                            <span class="text-slate-300">Cluster 1: Urban Climate Advocacy (44%)</span>
+                        </div>
+                        <div class="flex items-center gap-3 p-3 rounded-xl bg-slate-900 border border-slate-800">
+                            <span class="w-3 h-3 rounded-full bg-purple-500"></span>
+                            <span class="text-slate-300">Cluster 2: Regional Labor &amp; Energy Workforce (38%)</span>
+                        </div>
+                        <div class="flex items-center gap-3 p-3 rounded-xl bg-emerald-950/60 border border-emerald-600/50">
+                            <span class="w-3 h-3 rounded-full bg-emerald-400"></span>
+                            <span class="text-emerald-300 font-bold">Bridge Statement Consensus (82% Combined Overlap)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Interactive SVG Map / Graph -->
+                <div class="lg:col-span-7 p-6 rounded-3xl bg-slate-900 border border-slate-800 shadow-2xl space-y-4">
+                    <div class="flex justify-between items-center text-xs font-mono border-b border-slate-800 pb-3">
+                        <span class="text-slate-300 font-bold">PCA Opinion Topology (Real-Time Clustering)</span>
+                        <span class="text-emerald-400">82% Convergence Score</span>
+                    </div>
+
+                    <div class="relative w-full h-72 rounded-2xl bg-[#050813] border border-slate-800 p-4 overflow-hidden flex items-center justify-center">
+                        <svg class="w-full h-full" viewBox="0 0 500 240">
+                            <!-- Background Axis -->
+                            <line x1="50" y1="120" x2="450" y2="120" stroke="#1e293b" stroke-width="1" stroke-dasharray="4 4" />
+                            <line x1="250" y1="20" x2="250" y2="220" stroke="#1e293b" stroke-width="1" stroke-dasharray="4 4" />
+                            
+                            <!-- Cluster 1 (Left Blue dots) -->
+                            <circle cx="120" cy="90" r="14" fill="#3b82f6" fill-opacity="0.3" />
+                            <circle cx="120" cy="90" r="4" fill="#60a5fa" />
+                            <circle cx="100" cy="130" r="18" fill="#3b82f6" fill-opacity="0.25" />
+                            <circle cx="100" cy="130" r="5" fill="#60a5fa" />
+                            <circle cx="140" cy="110" r="12" fill="#3b82f6" fill-opacity="0.3" />
+                            <circle cx="140" cy="110" r="4" fill="#60a5fa" />
+                            
+                            <!-- Cluster 2 (Right Purple dots) -->
+                            <circle cx="360" cy="140" r="16" fill="#a855f7" fill-opacity="0.3" />
+                            <circle cx="360" cy="140" r="5" fill="#c084fc" />
+                            <circle cx="390" cy="100" r="14" fill="#a855f7" fill-opacity="0.25" />
+                            <circle cx="390" cy="100" r="4" fill="#c084fc" />
+                            <circle cx="340" cy="110" r="12" fill="#a855f7" fill-opacity="0.3" />
+                            <circle cx="340" cy="110" r="4" fill="#c084fc" />
+
+                            <!-- Bridge Statements (Center Emerging Overlap) -->
+                            <circle cx="250" cy="115" r="28" fill="#10b981" fill-opacity="0.2" class="animate-pulse" />
+                            <circle cx="250" cy="115" r="8" fill="#34d399" />
+                            
+                            <!-- Connection Waves -->
+                            <path d="M 140 110 Q 200 115 250 115" stroke="#38bdf8" stroke-width="1.5" stroke-dasharray="3 3" fill="none" />
+                            <path d="M 340 110 Q 300 115 250 115" stroke="#a855f7" stroke-width="1.5" stroke-dasharray="3 3" fill="none" />
+                            
+                            <!-- Labels -->
+                            <text x="70" y="50" fill="#94a3b8" font-size="11" font-family="monospace">Ecological Urgency</text>
+                            <text x="320" y="50" fill="#94a3b8" font-size="11" font-family="monospace">Economic Stability</text>
+                            <text x="180" y="195" fill="#34d399" font-size="11" font-family="monospace" font-weight="bold">SUPER-CONSENSUS (82%)</text>
+                        </svg>
+                    </div>
+
+                    <div class="p-3 rounded-xl bg-slate-950 border border-slate-800 text-xs text-slate-300 flex justify-between items-center">
+                        <span>Shared Bridge: <em>"Targeted funds must prioritize clean energy conversion for local plant workers."</em></span>
+                        <span class="text-emerald-400 font-mono font-bold">Passed</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- GAMIFICATION & REPUTATION TIERS (DEBATEISLAND INSPIRED) -->
+    <section id="gamification" class="py-24 bg-[#050813] border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <div class="text-xs font-mono text-amber-400 tracking-wider uppercase mb-2">Reputation Progression</div>
+                <h2 class="font-display font-bold text-3xl sm:text-5xl text-white">The Civic Reputation Ladder</h2>
+                <p class="text-slate-400 text-base mt-4">
+                    Drawing from competitive debate tournaments, users earn Civic Points not by being loud, but by citing verifiable data and uncovering consensus.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-4 gap-6">
+                
+                <!-- Tier 1 -->
+                <div class="p-6 rounded-2xl bg-slate-900/60 border border-slate-800 space-y-4 hover:border-slate-700 transition-all">
+                    <div class="text-3xl">🥉</div>
+                    <div>
+                        <div class="text-xs font-mono text-slate-400">Tier 01</div>
+                        <h3 class="font-display font-bold text-lg text-white">Verified Deliberator</h3>
+                    </div>
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        Granted upon passing basic source-verification trials. Unlocks voting and initial debate room arguments.
+                    </p>
+                    <div class="text-[11px] font-mono text-blue-400 pt-2 border-t border-slate-800">0 &ndash; 500 Civic XP</div>
+                </div>
+
+                <!-- Tier 2 -->
+                <div class="p-6 rounded-2xl bg-slate-900/60 border border-slate-800 space-y-4 hover:border-slate-700 transition-all">
+                    <div class="text-3xl">🥈</div>
+                    <div>
+                        <div class="text-xs font-mono text-slate-400">Tier 02</div>
+                        <h3 class="font-display font-bold text-lg text-white">Evidence Architect</h3>
+                    </div>
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        Earned by maintaining 80%+ verified citation accuracy over 10 consecutive deliberations.
+                    </p>
+                    <div class="text-[11px] font-mono text-blue-400 pt-2 border-t border-slate-800">500 &ndash; 2,000 Civic XP</div>
+                </div>
+
+                <!-- Tier 3 -->
+                <div class="p-6 rounded-2xl bg-slate-900/70 border border-blue-900/40 space-y-4 relative">
+                    <div class="absolute -top-3 right-4 text-[10px] font-mono px-2 py-0.5 rounded bg-blue-600 text-white font-bold">POPULAR</div>
+                    <div class="text-3xl">🥇</div>
+                    <div>
+                        <div class="text-xs font-mono text-blue-400">Tier 03</div>
+                        <h3 class="font-display font-bold text-lg text-white">Policy Synthesizer</h3>
+                    </div>
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        Ability to author and sponsor official motions. Direct contribution rights on consensus draft proposals.
+                    </p>
+                    <div class="text-[11px] font-mono text-emerald-400 pt-2 border-t border-slate-800">2,000 &ndash; 5,000 Civic XP</div>
+                </div>
+
+                <!-- Tier 4 -->
+                <div class="p-6 rounded-2xl bg-slate-900/60 border border-amber-900/40 space-y-4 hover:border-slate-700 transition-all">
+                    <div class="text-3xl">👑</div>
+                    <div>
+                        <div class="text-xs font-mono text-amber-400">Tier 04</div>
+                        <h3 class="font-display font-bold text-lg text-white">Civic Ambassador</h3>
+                    </div>
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        Elite status invited to quarterly roundtables with European Parliament deputies and municipal leadership.
+                    </p>
+                    <div class="text-[11px] font-mono text-amber-400 pt-2 border-t border-slate-800">5,000+ Civic XP</div>
+                </div>
+
+            </div>
+
         </div>
     </section>
 
@@ -487,75 +896,13 @@
         </div>
     </section>
 
-    <!-- INSTITUTIONAL & REVENUE ARCHITECTURE (ORANGE GROVE CANVAS) -->
-    <section id="institutional" class="py-24 bg-[#050813] border-b border-slate-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            
-            <div class="text-center max-w-3xl mx-auto mb-16">
-                <div class="text-xs font-mono text-emerald-400 tracking-wider uppercase mb-2">Ecosystem &amp; Business Model</div>
-                <h2 class="font-display font-bold text-3xl sm:text-5xl text-white">Dual-Engine B2G &amp; B2B Viability</h2>
-                <p class="text-slate-400 text-base mt-4">
-                    Extracted from our Orange Grove Business Model Canvas. Built for institutional longevity through democratic SaaS memberships and youth sentiment syndication.
-                </p>
-            </div>
-
-            <div class="grid md:grid-cols-3 gap-8">
-                
-                <!-- Pillar 1: Universities & Debating Clubs -->
-                <div class="p-8 rounded-2xl bg-slate-900/70 border border-slate-800 hover:border-slate-700 transition-all space-y-4">
-                    <div class="text-xs font-mono text-blue-400 uppercase font-semibold">Segment 01</div>
-                    <h3 class="font-display font-bold text-2xl text-white">Academic Debating &amp; Rhetoric Leagues</h3>
-                    <p class="text-sm text-slate-400 leading-relaxed">
-                        Universities, Toastmasters, and European youth parliaments pay tiered annual subscriptions to host private, branded tournament arenas with automated scoring and argument transcripts.
-                    </p>
-                    <div class="pt-4 border-t border-slate-800 text-xs font-mono space-y-1 text-slate-400">
-                        <div>&bull; Private Tournament Lobbies</div>
-                        <div>&bull; Rhetoric Skill Analytics</div>
-                        <div>&bull; Annual Campus Memberships</div>
-                    </div>
-                </div>
-
-                <!-- Pillar 2: Municipalities & Democratic Bodies -->
-                <div class="p-8 rounded-2xl bg-slate-900/70 border border-blue-900/50 hover:border-blue-700/80 transition-all space-y-4 relative">
-                    <div class="absolute -top-3 right-6 text-[10px] font-mono px-2 py-0.5 rounded bg-blue-600 text-white font-bold">PRIMARY FOCUS</div>
-                    <div class="text-xs font-mono text-emerald-400 uppercase font-semibold">Segment 02</div>
-                    <h3 class="font-display font-bold text-2xl text-white">Democratic Institutions &amp; Municipalities</h3>
-                    <p class="text-sm text-slate-400 leading-relaxed">
-                        Local councils and EU departments commission verified thematic citizen assemblies. They receive de-noised, fact-checked sentiment intelligence and structured consensus proposals.
-                    </p>
-                    <div class="pt-4 border-t border-slate-800 text-xs font-mono space-y-1 text-slate-400">
-                        <div>&bull; Anti-Astroturfing Deliberation</div>
-                        <div>&bull; Direct-to-Policy Synthesis Engine</div>
-                        <div>&bull; Complement to Decidim &amp; Pol.is</div>
-                    </div>
-                </div>
-
-                <!-- Pillar 3: Civic Foundations & Policy Think Tanks -->
-                <div class="p-8 rounded-2xl bg-slate-900/70 border border-slate-800 hover:border-slate-700 transition-all space-y-4">
-                    <div class="text-xs font-mono text-amber-400 uppercase font-semibold">Segment 03</div>
-                    <h3 class="font-display font-bold text-2xl text-white">Media, Think Tanks &amp; Foundations</h3>
-                    <p class="text-sm text-slate-400 leading-relaxed">
-                        Partnerships with independent investigative networks (openDemocracy, Solomon, EDMO) for syndicating data-driven debates and countering state-backed disinformation campaigns.
-                    </p>
-                    <div class="pt-4 border-t border-slate-800 text-xs font-mono space-y-1 text-slate-400">
-                        <div>&bull; Cross-Border Youth Sentiment Index</div>
-                        <div>&bull; Fact-Checking Syndication API</div>
-                        <div>&bull; Co-branded Investigative Debates</div>
-                    </div>
-                </div>
-
-            </div>
-
-        </div>
-    </section>
-
-    <!-- FOUNDING STORY & MANIFESTO -->
-    <section id="manifesto" class="py-24 bg-[#080d1a] border-b border-slate-800">
+    <!-- FOUNDING LEADERSHIP & MANIFESTO -->
+    <section id="leadership" class="py-24 bg-[#050813] border-b border-slate-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid lg:grid-cols-12 gap-12 items-center">
                 
                 <div class="lg:col-span-7 space-y-6">
-                    <div class="text-xs font-mono text-blue-400 tracking-wider uppercase">Project Genesis &bull; Brussels 2018 - Athens 2026</div>
+                    <div class="text-xs font-mono text-blue-400 tracking-wider uppercase">Founding Leadership &bull; Brussels 2018 &ndash; Athens 2026</div>
                     <h2 class="font-display font-bold text-3xl sm:text-4xl text-white leading-tight">
                         "People, and especially young people, eager to communicate with each other &mdash; and communicate the truth."
                     </h2>
@@ -564,29 +911,28 @@
                             The concept for <strong>Democracy Game</strong> was formulated in 2018 in the district of Etterbeek, Brussels, during Dimitrios Lampiris's service at the European Parliament alongside Greek MEP Giorgos Grammatikakis.
                         </p>
                         <p>
-                            Observing the inner mechanisms of European decision-making in contrast with the pervasive disengagement of Greek and European youth revealed an alarming structural failure: the formal democratic process had become completely untranslatable to digital natives, while algorithm-driven disinformation was systematically eroding trust.
+                            Observing the inner mechanisms of European decision-making in contrast with the pervasive disengagement of Greek and European youth revealed an alarming structural failure: formal democratic proceedings had become completely untranslatable to digital natives, while algorithm-driven disinformation was systematically eroding social cohesion.
                         </p>
                         <p>
-                            Joined by Dimitra Giannaki, Konstantinos Kalafatakis, and Olga Dourou, the team developed the platform through the <strong>EU Datathon 2021</strong> and the rigorous curriculum of the <strong>Orange Grove Incubation Program</strong>. Today, with the maturity of LLMs and AI fact-checking, the original vision is fully achievable at scale.
+                            Developed as a recognized finalist at the <strong>EU Datathon 2021</strong> and nurtured through the rigorous curriculum of the <strong>Orange Grove Incubation Program</strong>, the platform is now revitalized under focused executive leadership, integrating cutting-edge LLMs and real-time open data verification.
                         </p>
                     </div>
 
-                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-4 border-t border-slate-800">
-                        <div>
-                            <div class="font-display font-bold text-white text-sm">Dimitrios Lampiris</div>
-                            <div class="text-xs text-slate-500 font-mono">Product &amp; Strategy</div>
+                    <!-- Leadership Founders Cards -->
+                    <div class="grid sm:grid-cols-2 gap-6 pt-4 border-t border-slate-800">
+                        <div class="p-4 rounded-xl bg-slate-900 border border-slate-800">
+                            <div class="font-display font-bold text-white text-base">Dimitrios Lampiris</div>
+                            <div class="text-xs text-blue-400 font-mono mt-0.5">Founder &bull; Product &amp; Strategy</div>
+                            <p class="text-xs text-slate-400 mt-2">
+                                Digital Content Strategist, AI Prompt Architect, and media background. Ex-European Parliament parliamentary staff.
+                            </p>
                         </div>
-                        <div>
-                            <div class="font-display font-bold text-white text-sm">Dimitra Giannaki</div>
-                            <div class="text-xs text-slate-500 font-mono">EU Affairs &amp; Policy</div>
-                        </div>
-                        <div>
-                            <div class="font-display font-bold text-white text-sm">K. Kalafatakis</div>
-                            <div class="text-xs text-slate-500 font-mono">Research &amp; Analytics</div>
-                        </div>
-                        <div>
-                            <div class="font-display font-bold text-white text-sm">Olga Dourou</div>
-                            <div class="text-xs text-slate-500 font-mono">Communications</div>
+                        <div class="p-4 rounded-xl bg-slate-900 border border-slate-800">
+                            <div class="font-display font-bold text-white text-base">Dimitra Giannaki</div>
+                            <div class="text-xs text-blue-400 font-mono mt-0.5">Co-Founder &bull; EU Affairs &amp; Policy</div>
+                            <p class="text-xs text-slate-400 mt-2">
+                                European governance specialist, institutional outreach, and stakeholder engagement.
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -603,10 +949,10 @@
                         </blockquote>
 
                         <div class="p-4 rounded-xl bg-blue-950/30 border border-blue-900/50 text-xs font-mono text-blue-300 space-y-2">
-                            <div class="font-bold uppercase">Institutional Backing Lineage:</div>
+                            <div class="font-bold uppercase">Institutional Heritage:</div>
                             <ul class="list-disc list-inside space-y-1 text-slate-400 font-sans">
                                 <li>Publications Office of the European Union</li>
-                                <li>EU Open Data Days Finalist</li>
+                                <li>EU Open Data Days 2021 Finalist Team</li>
                                 <li>Orange Grove Netherlands Embassy Incubator</li>
                             </ul>
                         </div>
@@ -618,7 +964,7 @@
     </section>
 
     <!-- FOOTER -->
-    <footer class="py-12 bg-[#050813] text-slate-500 text-xs font-mono border-t border-slate-800">
+    <footer class="py-12 bg-[#040711] text-slate-500 text-xs font-mono border-t border-slate-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
             <div class="flex items-center gap-3">
                 <div class="w-6 h-6 rounded bg-blue-600 text-white font-bold flex items-center justify-center text-xs">Δ</div>
@@ -626,16 +972,52 @@
                 <span>&bull;</span>
                 <span>Athens / Brussels &bull; 2026 Relaunch Edition</span>
             </div>
-            <div>
-                Ready for deployment on GitHub Pages &amp; European Civic Tech Infrastructure.
+            <div class="text-slate-400">
+                Founders: Dimitrios Lampiris &amp; Dimitra Giannaki. Hosted on GitHub Pages.
             </div>
         </div>
     </footer>
 
     <!-- Interactive Client-side Script -->
     <script>
-        let currentStance = 'PRO';
+        // Carousel Engine
+        let currentSlide = 0;
+        const totalSlides = 4;
 
+        function updateSlideUI() {
+            for (let i = 0; i < totalSlides; i++) {
+                const slide = document.getElementById(`slide-${i}`);
+                const btn = document.getElementById(`step-btn-${i}`);
+                if (i === currentSlide) {
+                    slide.classList.remove('hidden');
+                    btn.className = 'p-4 rounded-xl bg-blue-600/20 border border-blue-500 text-left transition-all';
+                    btn.querySelector('span:first-child').className = 'text-[10px] font-mono text-blue-400 uppercase font-bold block';
+                } else {
+                    slide.classList.add('hidden');
+                    btn.className = 'p-4 rounded-xl bg-slate-900/60 border border-slate-800 text-left transition-all opacity-70 hover:opacity-100';
+                    btn.querySelector('span:first-child').className = 'text-[10px] font-mono text-slate-400 uppercase font-bold block';
+                }
+            }
+            document.getElementById('current-slide-num').innerText = currentSlide + 1;
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            updateSlideUI();
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+            updateSlideUI();
+        }
+
+        function goToSlide(idx) {
+            currentSlide = idx;
+            updateSlideUI();
+        }
+
+        // Townhall Stance & Simulation Engine
+        let currentStance = 'PRO';
         const btnPro = document.getElementById('btn-stance-pro');
         const btnCon = document.getElementById('btn-stance-con');
         const userText = document.getElementById('user-statement');
@@ -643,14 +1025,14 @@
 
         btnPro.addEventListener('click', () => {
             currentStance = 'PRO';
-            btnPro.className = 'px-2.5 py-1 rounded bg-blue-900/60 text-blue-300 border border-blue-700 text-[11px] font-bold';
-            btnCon.className = 'px-2.5 py-1 rounded bg-slate-800 text-slate-400 border border-slate-700 text-[11px]';
+            btnPro.className = 'px-3 py-1 rounded-lg bg-blue-900/70 text-blue-300 border border-blue-600 text-[11px] font-bold';
+            btnCon.className = 'px-3 py-1 rounded-lg bg-slate-800 text-slate-400 border border-slate-700 text-[11px]';
         });
 
         btnCon.addEventListener('click', () => {
             currentStance = 'CON';
-            btnCon.className = 'px-2.5 py-1 rounded bg-blue-900/60 text-blue-300 border border-blue-700 text-[11px] font-bold';
-            btnPro.className = 'px-2.5 py-1 rounded bg-slate-800 text-slate-400 border border-slate-700 text-[11px]';
+            btnCon.className = 'px-3 py-1 rounded-lg bg-blue-900/70 text-blue-300 border border-blue-600 text-[11px] font-bold';
+            btnPro.className = 'px-3 py-1 rounded-lg bg-slate-800 text-slate-400 border border-slate-700 text-[11px]';
         });
 
         function insertPreset(type) {
@@ -667,7 +1049,6 @@
             const text = userText.value.trim();
             if (!text) return;
 
-            // Clear input
             userText.value = '';
 
             const isMisinfo = text.toLowerCase().includes('secretly') || text.toLowerCase().includes('bankrupt') || text.toLowerCase().includes('40%');
@@ -728,10 +1109,10 @@
                         </div>
                         <div>
                             <div class="text-sm font-semibold text-slate-200 flex items-center gap-2">
-                                <span>Dimitrios L.</span>
+                                <span>Dimitrios Lampiris</span>
                                 <span class="text-[10px] font-mono px-1.5 py-0.2 rounded bg-slate-800 text-slate-400">${currentStance} Stance</span>
                             </div>
-                            <div class="text-[11px] text-slate-500 font-mono">Active Deliberator &bull; Live Session</div>
+                            <div class="text-[11px] text-slate-500 font-mono">Verified Citizen &bull; Active Deliberation</div>
                         </div>
                     </div>
                     ${badgeHtml}
