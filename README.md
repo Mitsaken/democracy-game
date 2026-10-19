@@ -17,8 +17,8 @@ Democracy Game was conceived in **Brussels (Etterbeek, 2018)** during service at
 * **Finalist Recognition:** EU Datathon 2021 (Publications Office of the European Union / EU Open Data Days).
 * **Incubation:** Orange Grove (Embassy of the Netherlands in Greece).
 * **Founding Leadership:** 
-  * **Dimitrios Lampiris** &mdash; Founder, Product & Strategy
-  * **Dimitra Giannaki** &mdash; Co-Founder, EU Affairs & Policy
+  * **Dimitra Giannaki** &mdash; Founder & Team Leader, EU Affairs & Policy
+  * **Dimitrios Lampiris** &mdash; Co-Founder (Supporting Role: Strategy & Product Architecture)
 
 ---
 
