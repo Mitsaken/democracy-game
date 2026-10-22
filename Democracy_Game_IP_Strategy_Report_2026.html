@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <title>Democracy Game - Έκθεση Στρατηγικής Κατοχύρωσης Πνευματικής & Βιομηχανικής Ιδιοκτησίας</title>
+    <style>
+        @page {
+            size: A4 portrait;
+            margin: 16mm 14mm 16mm 14mm;
+            @bottom-right {
+                content: "Σελίδα " counter(page);
+                font-family: 'Segoe UI', Tahoma, sans-serif;
+                font-size: 8.5pt;
+                color: #64748b;
+            }
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            color: #0f172a;
+            line-height: 1.55;
+            font-size: 9.8pt;
+            background: #ffffff;
+            margin: 0;
+            padding: 0;
+        }
+        .header-bar {
+            border-bottom: 2.5px solid #2563eb;
+            padding-bottom: 12px;
+            margin-bottom: 18px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+        .brand-title {
+            font-size: 18pt;
+            font-weight: 800;
+            color: #1e3a8a;
+            letter-spacing: -0.5px;
+            margin: 0;
+            text-transform: uppercase;
+        }
+        .brand-sub {
+            font-size: 8.5pt;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #2563eb;
+            font-weight: 700;
+            margin-top: 3px;
+        }
+        .doc-meta {
+            text-align: right;
+            font-size: 8.5pt;
+            color: #475569;
+            line-height: 1.4;
+        }
+        .doc-meta strong {
+            color: #0f172a;
+        }
+        .confidential-badge {
+            display: inline-block;
+            background: #f1f5f9;
+            color: #475569;
+            font-size: 7.5pt;
+            font-weight: 700;
+            padding: 2px 7px;
+            border-radius: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            border: 1px solid #cbd5e1;
+            margin-bottom: 4px;
+        }
+        .exec-summary {
+            background: #f8fafc;
+            border-left: 4px solid #2563eb;
+            padding: 12px 14px;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 18px;
+        }
+        .exec-summary h3 {
+            margin: 0 0 6px 0;
+            font-size: 10.5pt;
+            color: #1e3a8a;
+        }
+        .exec-summary p {
+            margin: 0;
+            font-size: 9.3pt;
+            color: #334155;
+            line-height: 1.5;
+        }
+        h2 {
+            font-size: 11.5pt;
+            border-bottom: 1px solid #e2e8f0;
+            padding-bottom: 4px;
+            margin-top: 18px;
+            margin-bottom: 8px;
+            color: #1e3a8a;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            page-break-after: avoid;
+        }
+        h3 {
+            font-size: 10.2pt;
+            color: #0f172a;
+            margin-top: 12px;
+            margin-bottom: 4px;
+            page-break-after: avoid;
+        }
+        p {
+            margin-top: 0;
+            margin-bottom: 8px;
+            text-align: justify;
+        }
+        ul, ol {
+            margin-top: 0;
+            margin-bottom: 10px;
+            padding-left: 18px;
+        }
+        li {
+            margin-bottom: 4px;
+        }
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin: 10px 0;
+        }
+        .card {
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            padding: 10px 12px;
+            background: #ffffff;
+        }
+        .card-green {
+            border-top: 3px solid #16a34a;
+            background: #f0fdf4;
+        }
+        .card-red {
+            border-top: 3px solid #dc2626;
+            background: #fef2f2;
+        }
+        .card-blue {
+            border-top: 3px solid #2563eb;
+            background: #eff6ff;
+        }
+        .card h4 {
+            margin: 0 0 4px 0;
+            font-size: 9.5pt;
+            font-weight: 700;
+        }
+        .card-green h4 { color: #166534; }
+        .card-red h4 { color: #991b1b; }
+        .card-blue h4 { color: #1e40af; }
+        .card p {
+            font-size: 8.8pt;
+            color: #334155;
+            margin: 0;
+            line-height: 1.45;
+        }
+        .alert-box {
+            background: #fffbeb;
+            border-left: 4px solid #f59e0b;
+            padding: 9px 12px;
+            border-radius: 0 6px 6px 0;
+            margin: 12px 0;
+            font-size: 9pt;
+            color: #78350f;
+        }
+        .alert-box strong {
+            color: #92400e;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 8.8pt;
+            margin: 12px 0 16px 0;
+            page-break-inside: avoid;
+        }
+        th, td {
+            border: 1px solid #cbd5e1;
+            padding: 6px 9px;
+            text-align: left;
+        }
+        th {
+            background: #f1f5f9;
+            color: #1e293b;
+            font-weight: 700;
+            font-size: 8.5pt;
+            text-transform: uppercase;
+        }
+        tr:nth-child(even) {
+            background: #f8fafc;
+        }
+        .badge {
+            display: inline-block;
+            font-size: 7.5pt;
+            font-weight: 700;
+            padding: 1.5px 6px;
+            border-radius: 3px;
+        }
+        .badge-green { background: #dcfce7; color: #166534; }
+        .badge-blue { background: #dbeafe; color: #1e40af; }
+        .badge-yellow { background: #fef3c7; color: #92400e; }
+        .badge-red { background: #fee2e2; color: #991b1b; }
+        .footer-note {
+            margin-top: 20px;
+            padding-top: 10px;
+            border-top: 1px solid #cbd5e1;
+            font-size: 8pt;
+            color: #64748b;
+            display: flex;
+            justify-content: space-between;
+        }
+        .page-break {
+            page-break-before: always;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Section -->
+    <div class="header-bar">
+        <div>
+            <div class="brand-title">Democracy Game</div>
+            <div class="brand-sub">Στρατηγική Έκθεση Κατοχύρωσης Πνευματικής & Βιομηχανικής Ιδιοκτησίας</div>
+        </div>
+        <div class="doc-meta">
+            <span class="confidential-badge">Εμπιστευτικο &bull; Εσωτερικη Χρηση</span><br>
+            <strong>Παραλήπτης:</strong> Δήμητρα Γιαννάκη (Founder & Team Leader)<br>
+            <strong>Συντάκτης:</strong> Δημήτριος Λαμπίρης (Co-Founder, Strategy & Product)<br>
+            <strong>Τεχνική Σύνταξη:</strong> Geminis (AI Partner) &bull; <strong>Ημερομηνία:</strong> 22 Οκτωβρίου 2026
+        </div>
+    </div>
+
+    <!-- Executive Summary -->
+    <div class="exec-summary">
+        <h3>Σκοπός της Έκθεσης</h3>
+        <p>
+            Η παρούσα έκθεση συντάχθηκε με σκοπό να προσφέρει στην Team Leader <strong>Δήμητρα Γιαννάκη</strong> μια κρυστάλλινη, ρεαλιστική και νομικά τεκμηριωμένη εικόνα για το πώς προστατεύεται το <strong>Democracy Game</strong>. Αναλύεται αυστηρά <strong>τι ισχύει για το αρχικό υλικό (βάση 2021)</strong>, αποσαφηνίζονται οι μύθοι γύρω από την «κατοχύρωση ιδέας», επισημαίνονται οι νομικές δικλείδες ασφαλείας σχετικά με τα πρώην μέλη της ομάδας και καθορίζεται ένα <strong>σαφές, βήμα-προς-βήμα πλάνο ενεργειών</strong> για την πλήρη κατοχύρωση του project από εδώ και εμπρός.
+        </p>
+    </div>
+
+    <!-- Section 1 -->
+    <h2>Μέρος 1: Η Αφετηρία μας — Τι Ισχύει Αυστηρά για το Αρχικό Υλικό (2021)</h2>
+    <p>
+        Απομονώνοντας οποιαδήποτε νέα τεχνολογική ανάπτυξη (κώδικα, νέο ιστότοπο, MVP), εξετάζουμε αποκλειστικά το υλικό που υπήρχε ως παρακαταθήκη της ομάδας: τον φάκελο του <em>Orange Grove Incubation Program</em> (Business Plan, Canvas Model, Customer Development, Costing), τα έγγραφα θεωρητικής μεθοδολογίας, καθώς και τα βίντεο και παρουσιάσεις του <em>EU Datathon 2021</em>.
+    </p>
+
+    <div class="grid-2">
+        <div class="card card-green">
+            <h4>ΤΙ ΚΑΤΟΧΥΡΩΝΕΤΑΙ ΑΠΟ ΤΟ ΑΡΧΙΚΟ ΥΛΙΚΟ</h4>
+            <p>
+                <strong>1. Εμπορικό Σήμα (Brand & Logo):</strong> Το όνομα «Democracy Game» και το λογότυπο κατοχυρώνονται νομικά ως εμπορικό σήμα (Trademark).<br>
+                <strong>2. Πρωτότυπα Κείμενα (Copyright):</strong> Η ακριβής διατύπωση των κειμένων του Business Plan και των μελετών (προστασία από λογοκλοπή).<br>
+                <strong>3. Οπτικοακουστικό Υλικό:</strong> Τα αυθεντικά βίντεο pitches προστατεύονται ως οπτικοακουστικά έργα.
+            </p>
+        </div>
+        <div class="card card-red">
+            <h4>ΤΙ ΔΕΝ ΚΑΤΟΧΥΡΩΝΕΤΑΙ ΝΟΜΙΚΑ</h4>
+            <p>
+                <strong>1. Η Αφηρημένη Ιδέα:</strong> Η έννοια «παιχνίδι/social app για τη δημοκρατία με debates και fake news» ανήκει στον δημόσιο διάλογο και δεν κατοχυρώνεται.<br>
+                <strong>2. Το Επιχειρηματικό Μοντέλο:</strong> Το Canvas και οι μέθοδοι οργάνωσης δεν πατεντάρονται στην Ευρώπη.<br>
+                <strong>3. Τα Ανοιχτά Δεδομένα (EU Datasets):</strong> Η διασύνδεση με δημόσιες πηγές είναι ελεύθερη για όλους.
+            </p>
+        </div>
+    </div>
+
+    <!-- Critical Alert Box -->
+    <div class="alert-box">
+        <strong>Κρίσιμη Νομική Επισήμανση (Πρώην Μέλη Ομάδας):</strong><br>
+        Στο αρχικό υλικό του 2021 (στο βίντεο του EU Datathon από τις εκδόσεις της Ε.Ε. και στα αρχεία του Orange Grove), ως ομάδα και συνδημιουργοί αναγράφονται τέσσερα άτομα (Δήμητρα Γιαννάκη, Δημήτριος Λαμπίρης, Κωνσταντίνος Καλαφατάκης, Όλγα Δούρου). Επειδή τα δύο τελευταία μέλη αποχώρησαν, <strong>δεν συνιστάται η επίκληση των παλαιών κειμένων αυτούσιων</strong>, καθώς θα μπορούσαν να προβάλουν αξιώσεις συνδημιουργίας (co-authorship). 
+        <br>Αντίθετα, <strong>το Εμπορικό Σήμα «Democracy Game» δεν είχε κατατεθεί ποτέ στο παρελθόν</strong> στο μητρώο σημάτων. Όποιος το καταθέσει πρώτος νόμιμα (first-to-file), αποκτά την απόλυτη κυριότητα του ονόματος.
+    </div>
+
+    <!-- Section 2 -->
+    <h2>Μέρος 2: Τι Πρέπει να Ακολουθήσει — Τα 5 Επίπεδα Πλήρους Κατοχύρωσης</h2>
+    <p>
+        Για να έχει το <strong>Democracy Game</strong> απόλυτη θωράκιση απέναντι σε ανταγωνιστές, πλήρη αξιοπιστία απέναντι σε επενδυτές και ευρωπαϊκά προγράμματα, και απόλυτη ανεξαρτησία από οποιαδήποτε παρελθοντική απαίτηση, πρέπει να ακολουθηθούν τα παρακάτω 5 συγκεκριμένα βήματα:
+    </p>
+
+    <h3>1. Κατοχύρωση Εθνικού Εμπορικού Σήματος στον ΟΒΙ (Άμεση Προτεραιότητα)</h3>
+    <p>
+        Η κατοχύρωση του ονόματος «Democracy Game» και του σχετικού λογοτύπου στον <strong>Οργανισμό Βιομηχανικής Ιδιοκτησίας (ΟΒΙ)</strong> είναι η πιο καθοριστική κίνηση.
+    </p>
+    <ul>
+        <li><strong>Δικαιούχος:</strong> Κατατίθεται απευθείας στο όνομα της <strong>Δήμητρας Γιαννάκη</strong> (με κωδικούς TAXISnet μέσω του `www.obi.gr`).</li>
+        <li><strong>Κλάσεις Νίκαιας (Προτεινόμενες):</strong>
+            <ul>
+                <li><strong>Κλάση 9:</strong> Λογισμικό υπολογιστών, εφαρμογές κινητών τηλεφώνων, ψηφιακές πλατφόρμες.</li>
+                <li><strong>Κλάση 41:</strong> Επιμόρφωση, εκπαίδευση πολιτών, διοργάνωση διαβουλεύσεων, gamified εκδηλώσεις.</li>
+                <li><strong>Κλάση 42:</strong> Υπηρεσίες λογισμικού (SaaS), σχεδιασμός πλατφορμών συμμετοχικής δημοκρατίας.</li>
+            </ul>
+        </li>
+        <li><strong>Επίσημο Κόστος:</strong> Ηλεκτρονικό παράβολο (κωδικός 8840) αξίας <strong>100 €</strong> για την πρώτη κλάση + <strong>20 €</strong> για κάθε επιπλέον κλάση (Σύνολο: <strong>140 €</strong> για 3 κλάσεις).</li>
+    </ul>
+
+    <h3>2. Κατοχύρωση Ψηφιακών Assets (Domains & Διαδικτυακή Ταυτότητα)</h3>
+    <p>
+        Κανένα εμπορικό σήμα δεν είναι πλήρες χωρίς τα θεμελιώδη ψηφιακά domains. Πρέπει να δεσμευτούν άμεσα τα ονόματα χώρου που σχετίζονται με το project (π.χ. <code>democracygame.gr</code>, <code>democracygame.eu</code>).
+    </p>
+    <ul>
+        <li><strong>Κόστος:</strong> Περίπου 20 € – 30 € ανά διετία συνολικά.</li>
+        <li><strong>Σημασία:</strong> Εμποδίζει κακόβουλες ενέργειες (cybersquatting) και κατοχυρώνει την επίσημη ψηφιακή έδρα της ομάδας.</li>
+    </ul>
+
+    <div class="page-break"></div>
+
+    <!-- Page 2 Header -->
+    <div class="header-bar" style="margin-top: 10px;">
+        <div>
+            <div class="brand-title" style="font-size: 14pt;">Democracy Game &bull; Στρατηγικη IP 2026</div>
+        </div>
+        <div class="doc-meta">
+            Παραλήπτης: <strong>Δήμητρα Γιαννάκη</strong> &bull; Σελίδα 2
+        </div>
+    </div>
+
+    <h3>3. Ιδιωτικό Συμφωνητικό Συνιδρυτών & Μεταβίβαση IP (Founders' Agreement)</h3>
+    <p>
+        Αποτελεί το ισχυρότερο νομικό αντίβαρο για την πλήρη διασφάλιση της τρέχουσας ηγεσίας. Συντάσσεται ένα λιτό ιδιωτικό συμφωνητικό μεταξύ της <strong>Δήμητρας Γιαννάκη</strong> (Founder & Team Leader) και του <strong>Δημητρίου Λαμπίρη</strong> (Co-Founder & Supporting Strategy):
+    </p>
+    <ul>
+        <li><strong>Καθαρή Αφετηρία (Clean-Room Status):</strong> Δηλώνεται ρητά ότι η τρέχουσα τεχνολογική και λειτουργική έκδοση του Democracy Game (έκδοση 2026) αποτελεί πρωτότυπη, αυτόνομη εξέλιξη απαλλαγμένη από παλαιότερες δεσμεύσεις.</li>
+        <li><strong>Μεταβίβαση Δικαιωμάτων (IP Assignment):</strong> Κάθε πνευματικό δικαίωμα, κώδικας, prompt architecture ή μελέτη που αναπτύσσεται μεταβιβάζεται αποκλειστικά στο κοινό σχήμα του Democracy Game υπό την ηγεσία της Δήμητρας.</li>
+        <li><strong>Κόστος:</strong> 0 € (ιδιωτικό συμφωνητικό με βεβαίωση γνησίου υπογραφής μέσω gov.gr).</li>
+    </ul>
+
+    <h3>4. Επίσημη Ψηφιακή Χρονοσήμανση στον ΟΠΙ (Οργανισμός Πνευματικής Ιδιοκτησίας)</h3>
+    <p>
+        Σύμφωνα με τον Νόμο 2121/1993, το λογισμικό (κώδικας, αρχιτεκτονική, PRDs, γραφιστικά στοιχεία) προστατεύεται αυτόματα με τη γέννησή του. Για να υπάρχει όμως <strong>αδιάσειστη απόδειξη ημερομηνίας προτεραιότητας</strong>:
+    </p>
+    <ul>
+        <li><strong>Διαδικασία:</strong> Μέσω της κρατικής πλατφόρμας <strong>timestamp.gr</strong> του ΟΠΙ, υποβάλλεται ένα συμπιεσμένο αρχείο (.zip) που περιέχει την τεχνική προδιαγραφή (PRD 2026), την αρχιτεκτονική της πλατφόρμας, τα νέα κείμενα και τον πηγαίο κώδικα.</li>
+        <li><strong>Εγγύηση Απορρήτου:</strong> Το ίδιο το αρχείο δεν ανεβαίνει ούτε αποθηκεύεται στον ΟΠΙ. Παράγεται μόνο ένα κρυπτογραφικό αποτύπωμα (hash) που συνδέεται με κρατικό ψηφιακό πιστοποιητικό ημερομηνίας.</li>
+        <li><strong>Κόστος:</strong> Μόλις <strong>20 €</strong> (για αρχείο έως 3 MB) ή <strong>30 €</strong> (έως 10 MB).</li>
+    </ul>
+
+    <h3>5. Εμπορικό Απόρρητο & Συμφωνητικά Εμπιστευτικότητας (Trade Secrets & NDAs)</h3>
+    <p>
+        Ορισμένα στοιχεία της τεχνολογίας μας <strong>δεν πρέπει να κατοχυρωθούν δημόσια</strong> (διότι η δημόσια κατάθεση θα αποκάλυπτε τον τρόπο λειτουργίας τους στους ανταγωνιστές):
+    </p>
+    <ul>
+        <li><strong>Τι παραμένει απόρρητο:</strong> Οι ειδικές φόρμουλες στάθμισης του Fact-Checking, τα Master System Prompts των AI μοντέλων, και οι παράμετροι ομαδοποίησης του Consensus Clustering.</li>
+        <li><strong>Πρακτική εφαρμογή:</strong> Υπογραφή τυποποιημένου συμφωνητικού μη αποκάλυψης (NDA) πριν από κάθε αναλυτική συζήτηση με εξωτερικούς προγραμματιστές, πιθανούς επενδυτές ή θεσμικούς αξιολογητές.</li>
+    </ul>
+
+    <h3>6. Επέκταση σε Ευρωπαϊκό Εμπορικό Σήμα (EUIPO) με Επιδότηση 75%</h3>
+    <p>
+        Μόλις ολοκληρωθεί η εθνική κατοχύρωση, το Democracy Game μπορεί να κατοχυρωθεί και στις 27 χώρες της Ευρωπαϊκής Ένωσης μέσω του <strong>EUIPO</strong>.
+    </p>
+    <ul>
+        <li><strong>Χρηματοδοτικό Εργαλείο:</strong> Μέσω του ευρωπαϊκού προγράμματος <strong>EUIPO SME Fund</strong> («Ideas Powered for business»), η ομάδα μπορεί να λάβει <strong>κουπόνι επιδότησης 75%</strong> επί των επίσημων τελών.</li>
+        <li><strong>Οικονομικό Όφελος:</strong> Το κόστος του ευρωπαϊκού σήματος μειώνεται από ~850 € στα <strong>~212 €</strong>.</li>
+    </ul>
+
+    <!-- Roadmap Table -->
+    <h2>Μέρος 3: Συνοπτικός Οδικός Χάρτης Ενεργειών (Roadmap)</h2>
+    <table>
+        <thead>
+            <tr>
+                <th style="width: 28%;">Ενέργεια</th>
+                <th style="width: 24%;">Φορέας / Εργαλείο</th>
+                <th style="width: 16%;">Κόστος</th>
+                <th style="width: 16%;">Χρόνος</th>
+                <th style="width: 16%;">Υπεύθυνος</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>1. Κατάθεση Εμπορικού Σήματος</strong></td>
+                <td>ΟΒΙ (`www.obi.gr`)</td>
+                <td>140 € (3 κλάσεις)</td>
+                <td>1 ημέρα</td>
+                <td>Δήμητρα Γιαννάκη</td>
+            </tr>
+            <tr>
+                <td><strong>2. Κατοχύρωση Domains</strong></td>
+                <td>Πάροχος (Papaki κ.λπ.)</td>
+                <td>~25 € (διετία)</td>
+                <td>Άμεσα</td>
+                <td>Δημήτριος / Δήμητρα</td>
+            </tr>
+            <tr>
+                <td><strong>3. Συμφωνητικό Συνιδρυτών</strong></td>
+                <td>Ιδιωτικό Έγγραφο (gov.gr)</td>
+                <td>0 €</td>
+                <td>1-2 ημέρες</td>
+                <td>Δήμητρα & Δημήτριος</td>
+            </tr>
+            <tr>
+                <td><strong>4. Ψηφιακή Χρονοσήμανση Κώδικα</strong></td>
+                <td>ΟΠΙ (`timestamp.gr`)</td>
+                <td>20 €</td>
+                <td>10 λεπτά</td>
+                <td>Geminis / Δημήτριος</td>
+            </tr>
+            <tr>
+                <td><strong>5. Αίτηση EUIPO SME Fund</strong></td>
+                <td>EUIPO Portal</td>
+                <td>Επιδότηση 75%</td>
+                <td>Επόμενο στάδιο</td>
+                <td>Ομάδα Democracy Game</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Conclusion Section -->
+    <h2>Συμπέρασμα & Επόμενα Βήματα για την Team Leader</h2>
+    <p>
+        Το αρχικό υλικό του 2021 αποτελεί ένα σπουδαίο στρατηγικό θεμέλιο επικύρωσης (validation), αλλά το πραγματικό εμπορικό μονοπώλιο θα κατοχυρωθεί νομικά μόνο μέσα από την <strong>άμεση κατάθεση του Εμπορικού Σήματος («Democracy Game») στον ΟΒΙ</strong> και τη <strong>χρονοσήμανση των νέων τεχνικών αρχείων στον ΟΠΙ</strong>.
+    </p>
+    <p>
+        Με συνολικό άμεσο προϋπολογισμό μικρότερο των <strong>185 €</strong> (Σήμα ΟΒΙ 140€ + Χρονοσήμανση ΟΠΙ 20€ + Domains 25€), το Democracy Game θωρακίζεται πλήρως, εξαλείφει κάθε παρελθοντικό ρίσκο και καθίσταται νομικά έτοιμο για παρουσιάσεις σε ευρωπαϊκά θεσμικά όργανα, incubators και επενδυτές.
+    </p>
+
+    <!-- Footer Note -->
+    <div class="footer-note">
+        <div>Democracy Game &bull; Strategic Briefing for Dimitra Giannaki</div>
+        <div>Συντάχθηκε από: Δημήτριος Λαμπίρης & Geminis</div>
+    </div>
+
+</body>
+</html>
